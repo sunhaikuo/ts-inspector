@@ -1,0 +1,47 @@
+{
+    "rulesDirectory": ".",
+    "rules": {
+        // 规范class名
+        "class-name": true,
+        "comment-format": [true, "check-space"],
+        // "file-header": true,
+        // 不允许使用require
+        "no-require-imports": true,
+        // "no-duplicate-imports": true,
+        "indent": [true, "spaces"],
+        "no-duplicate-variable": true,
+        "no-eval": true,
+        // 不允许内部的module
+        "no-internal-module": true,
+        "no-trailing-whitespace": true,
+        "no-var-keyword": true,
+        "one-line": [true, "check-open-brace", "check-whitespace"],
+        // 不能有空的interface
+        // interface Inter {} ERROR!
+        "no-empty-interface": true,
+        // 必须是单引号
+        "quotemark": [true, "single"],
+        // 不能有分号
+        "semicolon": [true, "never"],
+        "triple-equals": [true, "allow-null-check"],
+        "typedef-whitespace": [
+            true,
+            {
+                "call-signature": "nospace",
+                "index-signature": "nospace",
+                "parameter": "nospace",
+                "property-declaration": "nospace",
+                "variable-declaration": "nospace"
+            }
+        ],
+        "variable-name": [true, "ban-keywords"],
+        "whitespace": [
+            true,
+            "check-branch",
+            "check-decl",
+            "check-operator",
+            "check-separator",
+            "check-type"
+        ]
+    }
+}

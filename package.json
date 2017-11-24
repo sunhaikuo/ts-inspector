@@ -1,0 +1,16 @@
+{
+  "name": "npm-ts-checker",
+  "version": "1.0.0",
+  "description": "typescript文件检查工具",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run test"
+  },
+  "keywords": [
+    "typescript",
+    "ts",
+    "checker"
+  ],
+  "author": "sunhaikuo",
+  "license": "MIT"
+}

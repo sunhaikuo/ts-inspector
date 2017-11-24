@@ -1,0 +1,1 @@
+{"name":"Uuid","documentation":"Uuid处理类","properties":[],"constructor":{"returnType":"Uuid","documentation":"","parameters":[]},"functions":[{"name":"getUuid","returnType":"string","documentation":"生成uuid","decorate":"public","static":true,"parameters":[{"name":"format","documentation":"是否格式化uuid","type":"boolean"}]}]}
