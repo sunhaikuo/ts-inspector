@@ -2,9 +2,9 @@ import IFunction from './IFunction'
 import IClass from './IClass'
 import IProp from './IProp'
 import IConstuctor from './IConstructor'
-import File from '../../src/node/MFile'
+import File from './MFile'
 import * as fs from 'fs-extra'
-import config from './config'
+import IConfig from './IConfig'
 
 interface IPropInner {
     key: string
@@ -18,20 +18,28 @@ interface IDoc {
 
 class CreateTS {
     private filePath: string
-    constructor(filePath: string) {
-        this.filePath = filePath
+    private output: string
+    private whiteList: Array<String>
+    constructor(config: IConfig) {
+        this.filePath = config.path
+        this.output = config.output
+        this.whiteList = config.whiteList
     }
     createTS() {
         const fileNames = File.getFiles(this.filePath, false, false)
-        let tsPath = '../../types/mtime-util.d.ts'
+        // let tsPath = '../../types/mtime-util.d.ts'
+        let tsPath = this.output
         fs.removeSync(tsPath)
         fs.createFileSync(tsPath)
         let header = 'declare module "@mtime-node-mlibs/live-util-ts" {' + '\n'
-        fs.appendFileSync(tsPath, header)
+        // fs.appendFileSync(tsPath, header)
+
+        let tsFileStr = []
+        tsFileStr.push(header)
         for (let i = 0; i < fileNames.length; i++) {
             let arr = []
             let name = fileNames[i]
-            const whiteList = config.whiteList
+            const whiteList = this.whiteList
             if (whiteList.indexOf(name) > -1) {
                 continue
             }
@@ -41,9 +49,14 @@ class CreateTS {
             arr.push(this.createProps(json.properties))
             arr.push(this.createFuns(json.functions))
             arr.push('}')
-            fs.appendFileSync(tsPath, arr.join('\n') + '\n')
+            // fs.appendFileSync(tsPath, arr.join('\n') + '\n')
+            tsFileStr.push(arr.join('\n') + '\n')
         }
-        fs.appendFileSync(tsPath, '}')
+        // fs.appendFileSync(tsPath, '}')
+        tsFileStr.push('}')
+        // console.log(tsFileStr.join(''))
+        // let str = prettier.format(tsFileStr.join(''))
+        fs.writeFileSync(tsPath, tsFileStr.join(''))
     }
     private createDoc(doc: IDoc, isClass?: boolean) {
         let str1 = '/**' + '\n'

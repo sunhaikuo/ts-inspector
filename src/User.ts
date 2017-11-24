@@ -24,6 +24,7 @@ class User {
     /**
      * setName1
      * @param name f-name
+     * @param sex xxx
      */
     public setName(name: string, sex: boolean) {
         this.name = name

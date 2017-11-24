@@ -12,5 +12,5 @@ tmp
 /.vscode
 logs
 .rpt2_cache
-tools/verification/json/*.*
-types/mtime-util.d.ts
+lib/*.*
+lib/json/*.*

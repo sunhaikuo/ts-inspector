@@ -1,8 +1,4 @@
 export default {
-    // 不需要做检查的文件, 其中.DS_Store为系统文件, 要把这个文件过滤
-    whiteList: ['index', '.DS_Store'],
-    // 要检查ts文件的路径(文件路径或文件夹路径)
-    path: '/src',
     // 要检查的错误项目
     errors: {
         C001: '类名不能为空!',

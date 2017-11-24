@@ -20,9 +20,10 @@ import IClass from './IClass'
 import IProp from './IProp'
 import IFun from './IFunction'
 import ca from './ClassAnalyst'
-import File from '../../src/node/MFile'
-import config from './config'
+import File from './MFile'
+import error from './error'
 import * as ora from 'ora'
+import IConfig from './IConfig'
 enum Type {
     class = 1,
     property = 2,
@@ -63,16 +64,17 @@ interface IError {
     funName?: string
 }
 
-const errors: any = config.errors
+const errors: any = error
 
 class Verify {
-    filePath: string
-    isGit: boolean
+    private filePath: string
+    private isGit: boolean
+    private whiteList: Array<String>
     /**
      * 构造方法
      * @param filePath 文件/文件夹路径
      */
-    constructor(filePath: string, isGit: boolean) {
+    constructor(filePath: string, whiteList: Array<String>, isGit: boolean) {
         // let result = ca.init('../../src/File.ts')
         // console.log(result)
         // console.log(error.C001)
@@ -86,6 +88,7 @@ class Verify {
 
         this.filePath = filePath
         this.isGit = isGit
+        this.whiteList = whiteList
     }
     /**
      * 校验文件
@@ -93,7 +96,7 @@ class Verify {
     public verify(): boolean {
         const paths = File.getFiles(this.filePath, true, true)
         const fileNames = File.getFiles(this.filePath, false, false)
-        const whiteList = config.whiteList
+        const whiteList = this.whiteList
         let isSuccess = true
         for (let i = 0; i < paths.length; i++) {
             let myPath = paths[i]
