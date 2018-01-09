@@ -1,0 +1,21 @@
+{
+    "author": "sunhaikuo",
+    "dependencies": {
+        "@types/fs-extra": "^2.0.0",
+        "@types/node": "^6.0.10",
+        "fs-extra": "^4.0.2",
+        "ora": "^1.3.0",
+        "pre-commit": "^1.2.2",
+        "typescript": "^2.6.1"
+    },
+    "description": "typescript文件检查工具",
+    "keywords": ["typescript", "ts", "checker"],
+    "license": "MIT",
+    "main": "./lib/index.js",
+    "name": "@mtime-node-mlibs/ts-inspector",
+    "scripts": {
+        "build": "tsc"
+    },
+    "typings": "types/inpector.d.ts",
+    "version": "1.0.35"
+}
