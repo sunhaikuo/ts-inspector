@@ -9,7 +9,11 @@
         "typescript": "^2.6.1"
     },
     "description": "typescript文件检查工具",
-    "keywords": ["typescript", "ts", "checker"],
+    "keywords": [
+        "typescript",
+        "ts",
+        "checker"
+    ],
     "license": "MIT",
     "main": "./lib/index.js",
     "name": "@mtime-node-mlibs/ts-inspector",

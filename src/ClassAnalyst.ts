@@ -115,7 +115,7 @@ function serializeProperty(prop: ts.Symbol) {
     if (prop.flags && prop.flags === propertyFlag) {
         propInfo.name = prop.name
         propInfo.documentation = ts.displayPartsToString(
-            prop.getDocumentationComment()
+            prop.getDocumentationComment(undefined)
         )
         propInfo.type = checker.typeToString(
             checker.getTypeOfSymbolAtLocation(prop, prop.valueDeclaration!)
@@ -128,7 +128,7 @@ function serializeConstructor(signature: ts.Signature) {
     let constructor = {} as IConstructor
     constructor.returnType = checker.typeToString(signature.getReturnType())
     constructor.documentation = ts.displayPartsToString(
-        signature.getDocumentationComment()
+        signature.getDocumentationComment(undefined)
     )
     constructor.parameters = signature.parameters.map(serializeParam)
     return constructor
@@ -142,7 +142,7 @@ function serializeFunction(
     fun.name = method.name.getText()
     fun.returnType = checker.typeToString(signature.getReturnType())
     fun.documentation = ts.displayPartsToString(
-        signature.getDocumentationComment()
+        signature.getDocumentationComment(undefined)
     )
     fun.decorate = getDecorate(method.getText())
     fun.static = getStatic(method.getText())
@@ -154,7 +154,7 @@ function serializeParam(symbol: ts.Symbol) {
     let prop = {} as IProp
     prop.name = symbol.getName()
     prop.documentation = ts.displayPartsToString(
-        symbol.getDocumentationComment()
+        symbol.getDocumentationComment(undefined)
     )
     prop.type = checker.typeToString(
         checker.getTypeOfSymbolAtLocation(symbol, symbol.valueDeclaration!)
@@ -168,7 +168,7 @@ function serializeSignature(signature: ts.Signature) {
         parameters: signature.parameters.map(serializeSymbol),
         returnType: checker.typeToString(signature.getReturnType()),
         documentation: ts.displayPartsToString(
-            signature.getDocumentationComment()
+            signature.getDocumentationComment(undefined)
         )
     }
 }
@@ -178,7 +178,7 @@ function serializeSymbol(symbol: ts.Symbol) {
     return {
         name: symbol.getName(),
         documentation: ts.displayPartsToString(
-            symbol.getDocumentationComment()
+            symbol.getDocumentationComment(undefined)
         ),
         type: checker.typeToString(
             checker.getTypeOfSymbolAtLocation(symbol, symbol.valueDeclaration!)
